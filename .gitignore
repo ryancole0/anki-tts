@@ -1,0 +1,16 @@
+# secrets
+.secrets/
+
+# mp3's
+.mp3
+anki_media/
+
+# python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+.dist/
+.build/
+.venv/

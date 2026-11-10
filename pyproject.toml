@@ -1,0 +1,31 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "anki-tts"
+version = "0.1.0"
+description = "CLI for Google Cloud Text-to-Speech (nb-NO) producing MP3 audio."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "google-cloud-texttospeech>=2.16.0",
+  "python-slugify>=8.0.4",
+  "pyyaml>=6.0.1",
+  "tqdm>=4.66.4",
+  # not actively maintained but still the defacto package for programmatic Anki deck creation in python
+  "genanki"
+]
+
+[project.scripts]
+anki-tts = "anki_tts.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/anki_tts"]
+
+[tool.hatch.envs.default]
+python = "3.11"
+
+[tool.hatch.envs.default.env-vars]
+# Relative-to-repo credential path (hard-coded relative)
+GOOGLE_APPLICATION_CREDENTIALS = "{root}/.secrets/gcp-tts-key.json"
